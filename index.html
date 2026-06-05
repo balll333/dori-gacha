@@ -770,9 +770,294 @@ button:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:0 8px 0
     to{transform:translate(var(--dx),var(--dy)) scale(0);opacity:0}
 }
 
+
+.recordOverlay{
+    position:fixed;
+    inset:0;
+    z-index:998;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    background:radial-gradient(circle,rgba(93,218,255,.23),rgba(0,0,0,.82));
+    backdrop-filter:blur(5px);
+}
+.recordOverlay.show{display:flex;animation:recordPop .2s ease}
+.recordBox{
+    width:min(560px,88vw);
+    text-align:center;
+    border-radius:30px;
+    padding:34px 24px;
+    background:linear-gradient(180deg,rgba(0,54,95,.94),rgba(5,12,31,.96));
+    border:3px solid rgba(99,223,255,.9);
+    box-shadow:0 0 90px rgba(66,210,255,.55), inset 0 0 24px rgba(120,235,255,.18);
+}
+.recordBox h2{
+    margin:0 0 10px;
+    font-size:min(13vw,70px);
+    color:#bff5ff;
+    text-shadow:0 0 28px rgba(75,218,255,.95);
+}
+.recordBox p{
+    margin:0;
+    font-size:25px;
+    font-weight:950;
+    color:#fff;
+}
+.itemOverlay.show .itemBox{animation:itemShake .42s ease both}
+.itemOverlay.show .itemOverlayImg{animation:itemZoom .7s ease both}
+@keyframes recordPop{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
+@keyframes itemShake{
+    0%{transform:scale(.88) rotate(-2deg)}
+    35%{transform:scale(1.06) rotate(2deg)}
+    65%{transform:scale(.98) rotate(-1deg)}
+    100%{transform:scale(1) rotate(0)}
+}
+@keyframes itemZoom{
+    0%{transform:scale(.45);opacity:0}
+    45%{transform:scale(1.12);opacity:1}
+    100%{transform:scale(1)}
+}
+
+
+/* ===== 아이템 획득 대형 연출 강화 ===== */
+.itemOverlay{
+    position:fixed !important;
+    inset:0 !important;
+    z-index:5000 !important;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    background:
+      radial-gradient(circle at center, rgba(255,230,90,.35), rgba(0,0,0,.92) 62%),
+      rgba(0,0,0,.9) !important;
+    backdrop-filter:blur(6px);
+}
+.itemOverlay.show{display:flex !important;animation:itemOverlayPop .22s ease both}
+.itemBox{
+    width:min(760px,92vw) !important;
+    min-height:520px;
+    text-align:center;
+    border-radius:38px !important;
+    padding:42px 28px 34px !important;
+    background:linear-gradient(180deg,rgba(100,58,0,.98),rgba(20,10,0,.98)) !important;
+    border:5px solid rgba(255,226,100,.98) !important;
+    box-shadow:
+      0 0 120px rgba(255,203,55,.85),
+      inset 0 0 34px rgba(255,226,100,.22) !important;
+    transform-origin:center;
+}
+.itemBox h2{
+    margin:0 0 18px !important;
+    font-size:min(17vw,105px) !important;
+    line-height:1 !important;
+    font-weight:1000 !important;
+    color:#fff3b0 !important;
+    text-shadow:
+      0 0 18px rgba(255,220,80,1),
+      0 0 42px rgba(255,168,35,.9),
+      4px 4px 0 rgba(90,40,0,.8) !important;
+    letter-spacing:-3px;
+}
+.itemBox p{
+    margin:0 0 22px !important;
+    font-size:min(7vw,38px) !important;
+    font-weight:1000 !important;
+    color:#ffffff !important;
+    text-shadow:0 0 18px rgba(255,255,255,.45);
+}
+.itemOverlayImg{
+    width:min(460px,78vw) !important;
+    height:260px !important;
+    object-fit:contain;
+    border-radius:26px !important;
+    background:rgba(0,0,0,.36) !important;
+    border:2px solid rgba(255,255,255,.24) !important;
+    padding:16px !important;
+    box-shadow:0 22px 60px rgba(0,0,0,.5), 0 0 34px rgba(255,226,100,.38) !important;
+}
+.itemSpark{
+    position:absolute;
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    background:#fff08a;
+    box-shadow:0 0 26px #fff08a,0 0 44px #ffbe3f;
+    animation:sparkFly 1.25s ease-out infinite;
+}
+@keyframes itemOverlayPop{
+    0%{opacity:0;transform:scale(.9)}
+    100%{opacity:1;transform:scale(1)}
+}
+@keyframes itemBigShake{
+    0%{transform:scale(.72) rotate(-4deg)}
+    35%{transform:scale(1.08) rotate(3deg)}
+    65%{transform:scale(.98) rotate(-1deg)}
+    100%{transform:scale(1) rotate(0)}
+}
+.itemOverlay.show .itemBox{animation:itemBigShake .62s ease both}
+.itemOverlay.show .itemOverlayImg{animation:itemImgBoom .78s ease both}
+@keyframes itemImgBoom{
+    0%{transform:scale(.35);opacity:0}
+    45%{transform:scale(1.16);opacity:1}
+    100%{transform:scale(1)}
+}
+
+
+/* ===== 아이템 회수 보상 안내 팝업 ===== */
+.noticeOverlay{
+    position:fixed;
+    inset:0;
+    z-index:6000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,0,0,.78);
+    backdrop-filter:blur(5px);
+}
+.noticeOverlay.show{display:flex}
+.noticeBox{
+    width:min(640px,90vw);
+    border-radius:30px;
+    padding:30px 24px;
+    text-align:center;
+    background:linear-gradient(180deg,#242b55,#11162d);
+    border:2px solid rgba(255,255,255,.22);
+    box-shadow:0 0 70px rgba(95,113,255,.45);
+}
+.noticeBox h2{
+    margin:0 0 14px;
+    font-size:min(10vw,48px);
+    color:#fff;
+}
+.noticeBox p{
+    margin:0 0 18px;
+    font-size:18px;
+    line-height:1.65;
+    color:#e7ecff;
+    font-weight:800;
+}
+.noticeRewardBtn{
+    width:100%;
+    font-size:22px;
+    padding:18px 14px;
+    border-radius:20px;
+    background:linear-gradient(180deg,#ffd76f,#b76b12);
+    box-shadow:0 8px 0 #71400b,0 18px 32px rgba(0,0,0,.28);
+}
+.noticeSmall{
+    margin-top:12px;
+    color:#bac4f5;
+    font-size:13px;
+    line-height:1.45;
+}
+
+
+.tenResultOverlay{
+    position:fixed;
+    inset:0;
+    z-index:4500;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,0,0,.78);
+    backdrop-filter:blur(5px);
+}
+.tenResultOverlay.show{display:flex}
+.tenResultBox{
+    width:min(1120px,94vw);
+    max-height:88vh;
+    overflow:auto;
+    border-radius:30px;
+    padding:24px;
+    background:linear-gradient(180deg,#1e2448,#0f1429);
+    border:2px solid rgba(255,255,255,.22);
+    box-shadow:0 0 70px rgba(95,113,255,.45);
+}
+.tenResultHead{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    align-items:center;
+    margin-bottom:16px;
+}
+.tenResultHead h2{margin:0;font-size:34px}
+.tenResultGrid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+    gap:14px;
+}
+.tenResultClose{
+    width:auto;
+    min-width:96px;
+    font-size:15px;
+    padding:11px 14px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#42506d,#232c40);
+    box-shadow:0 6px 0 #161c29;
+}
+
+
+/* ===== 안내사항 팝업 표시 고정 ===== */
+.noticeOverlay{
+    position:fixed !important;
+    inset:0 !important;
+    z-index:999999 !important;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,0,0,.82) !important;
+    backdrop-filter:blur(5px);
+}
+.noticeOverlay.show{
+    display:flex !important;
+}
+.noticeBox{
+    width:min(680px,92vw) !important;
+    border-radius:30px;
+    padding:32px 24px;
+    text-align:center;
+    background:linear-gradient(180deg,#242b55,#11162d) !important;
+    border:2px solid rgba(255,255,255,.28);
+    box-shadow:0 0 80px rgba(95,113,255,.55);
+}
+.noticeBox h2{margin:0 0 16px;font-size:min(11vw,52px);color:#fff}
+.noticeBox p{margin:0 0 20px;font-size:19px;line-height:1.7;color:#e7ecff;font-weight:900}
+.noticeRewardBtn{
+    width:100%;
+    font-size:22px;
+    padding:18px 14px;
+    border-radius:20px;
+    background:linear-gradient(180deg,#ffd76f,#b76b12);
+    box-shadow:0 8px 0 #71400b,0 18px 32px rgba(0,0,0,.28);
+}
+.noticeSmall{margin-top:12px;color:#bac4f5;font-size:13px;line-height:1.45}
+
 </style>
 </head>
 <body>
+
+<div class="tenResultOverlay" id="tenResultOverlay">
+    <div class="tenResultBox">
+        <div class="tenResultHead">
+            <h2>10연 뽑기 결과</h2>
+            <button class="tenResultClose" onclick="closeTenResult()">닫기</button>
+        </div>
+        <div class="tenResultGrid" id="tenResultGrid"></div>
+    </div>
+</div>
+
+<div class="noticeOverlay" id="reclaimNoticeOverlay">
+    <div class="noticeBox">
+        <h2>안내사항</h2>
+        <p>
+            죄송합니다, 게임 밸런스에 의해 아이템이 전부 회수되었습니다.<br>
+            정말 죄송한 마음에 사료로 코인 100개를 지급하겠습니다.
+        </p>
+        <button class="noticeRewardBtn" onclick="claimReclaimReward()">보상 코인 100개 받기</button>
+        <div class="noticeSmall">보상은 한 번만 받을 수 있어.</div>
+    </div>
+</div>
+
 <div id="legendaryOverlay">
     <div class="legendaryBurst"></div><div class="legendaryFlash"></div>
     <div class="legendaryBox">
@@ -792,7 +1077,7 @@ button:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:0 8px 0
             <div class="resource"><div class="resourceLabel">코인</div><div class="resourceValue" id="coinText">30</div></div>
             <div class="resource"><div class="resourceLabel">조각</div><div class="resourceValue" id="pieceText">0</div></div>
             <div class="resource"><div class="resourceLabel">누적 뽑기</div><div class="resourceValue" id="totalText">0</div></div>
-            <div class="resource"><div class="resourceLabel">전설 천장</div><div class="resourceValue" id="pityText">200</div></div>
+            <div class="resource"><div class="resourceLabel">전설 천장</div><div class="resourceValue" id="pityText">300</div></div>
             <div class="resource"><div class="resourceLabel">다음 충전</div><div class="resourceValue" id="resetText">--:--</div></div>
         </div>
     </div>
@@ -822,7 +1107,7 @@ button:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:0 8px 0
             <button class="backHomeBtn" onclick="showHome()">← 메인</button>
             <div class="machineTitle">
                 <h2>도리 뽑기</h2>
-                <div class="rateMini">전설 천장 200뽑</div>
+                <div class="rateMini">전설 천장 300뽑</div>
             </div>
 
             <div class="card" id="mainCard"></div>
@@ -830,13 +1115,14 @@ button:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:0 8px 0
             <div id="resultRarity"></div>
 
             <button onclick="singlePull()" id="singleBtn">1회 뽑기</button>
+                <button onclick="tenPull()" id="tenBtn" style="margin-top:10px;background:linear-gradient(180deg,#ff7ccf,#9c327c);box-shadow:0 8px 0 #5c1d49">10연 뽑기</button>
 
             <button class="exchangeBtn" onclick="exchangePieces()" id="exchangeBtn">조각 20개 → 코인 5개</button>
 
             <div class="message" id="messageText">앨범/코인 초기화 완료 · 코인 30개로 시작!</div>
             <div class="note">
                 중복 보상: 일반 +1조각 / 특별 +5조각 / 전설 +50조각<br>
-                전설 천장 200뽑 · 10연차 없음 · 매일 코인 30개 자동충전
+                전설 천장 300뽑 · 10연차 없음 · 매일 코인 30개 자동충전
             </div>
 
             <div class="recentTitle">최근 뽑기</div>
@@ -984,7 +1270,7 @@ const items = [{"id": "waegok_1", "name": "왜곡도리 1", "img": "data:image/w
 const ALBUM_KEY = "dori_final_album_v7_reset";
 const STATE_KEY = "dori_final_state_v5";
 const DAILY_COINS = 30;
-const PITY_LIMIT = 200;
+const PITY_LIMIT = 300;
 const rarityOrder = ["전설", "특별", "일반"];
 const rarityEmoji = {"전설":"👑", "특별":"✨", "일반":"🔹"};
 
@@ -1196,6 +1482,8 @@ function updateStateUI(){
     document.getElementById("resetText").innerText = getNextMidnightText();
     document.getElementById("singleBtn").disabled = rolling;
     document.getElementById("exchangeBtn").disabled = state.pieces < 20 || rolling;
+    const tenBtn = document.getElementById("tenBtn");
+    if(tenBtn) tenBtn.disabled = rolling || state.coins < 10;
 }
 
 function groupItemsByRarity(){
@@ -1727,7 +2015,7 @@ function stopLockAnim(){
 
 
 /* ===== 아이템 앨범 + 미니게임 7라운드 강화판 ===== */
-const ITEM_ALBUM_KEY = "dori_item_album_v1";
+const ITEM_ALBUM_KEY = "dori_item_album_v2_reclaimed";
 const doriItems = [
     {
         id:"dori_mom_card",
@@ -2328,11 +2616,700 @@ updateStateUI = function(){
     updateGameRewardUI();
 };
 
+
+/* ===== 신기록/아이템 획득 강조 최종 패치 ===== */
+function showRecordOverlay(text){
+    const overlay = document.getElementById("recordOverlay");
+    const t = document.getElementById("recordOverlayText");
+    if(!overlay) return;
+    if(t) t.innerText = text || "최고 기록 갱신!";
+    overlay.classList.remove("show");
+    void overlay.offsetWidth;
+    overlay.classList.add("show");
+    setTimeout(()=>overlay.classList.remove("show"), 1700);
+}
+
+function showItemOverlay(item){
+    let overlay = document.getElementById("itemOverlay");
+    if(!overlay){
+        overlay = document.createElement("div");
+        overlay.id = "itemOverlay";
+        overlay.className = "itemOverlay";
+        overlay.innerHTML = `
+            <div class="itemBox">
+                <h2>아이템 획득!</h2>
+                <p id="itemOverlayName">도리의 아이템</p>
+                <img class="itemOverlayImg" id="itemOverlayImg" src="" alt="아이템">
+            </div>`;
+        document.body.appendChild(overlay);
+    }
+
+    const name = document.getElementById("itemOverlayName");
+    const img = document.getElementById("itemOverlayImg");
+    if(name) name.innerText = item.name;
+    if(img) img.src = item.img;
+
+    overlay.querySelectorAll(".itemSpark").forEach(el => el.remove());
+    for(let i=0;i<42;i++){
+        const s = document.createElement("div");
+        s.className = "itemSpark";
+        const angle = Math.random() * Math.PI * 2;
+        const dist = 150 + Math.random() * 300;
+        s.style.left = "50%";
+        s.style.top = "50%";
+        s.style.setProperty("--dx", Math.cos(angle) * dist + "px");
+        s.style.setProperty("--dy", Math.sin(angle) * dist + "px");
+        s.style.animationDelay = (Math.random() * .36) + "s";
+        overlay.appendChild(s);
+    }
+
+    overlay.classList.remove("show");
+    void overlay.offsetWidth;
+    overlay.classList.add("show");
+
+    setTimeout(()=>overlay.classList.remove("show"), 2600);
+}
+
+function awardItem(id){
+    const item = doriItems.find(x=>x.id===id);
+    if(!item) return "";
+    const arr = getItemAlbum();
+    if(arr.includes(id)) return `${item.name} 이미 보유 중!`;
+    arr.push(id);
+    saveItemAlbum(arr);
+    renderAlbum();
+    // 실제 게임에서 새로 얻었을 때 무조건 강한 연출
+    showItemOverlay(item);
+    return `🎁 아이템 획득! ${item.name}`;
+}
+
+// 지갑 결과 함수 최종 덮어쓰기: 신기록/아이템 획득 연출 확실히 발동
+function finishWallet(distance){
+    const perfectWallet = walletAngle >= 45 && walletAngle <= 46 && walletPower >= 95;
+    let reward = 1;
+    if(distance >= 150) reward = 12;
+    else if(distance >= 80) reward = 8;
+    else if(distance >= 50) reward = 6;
+    else if(distance >= 35) reward = 5;
+    else if(distance >= 25) reward = 4;
+    else if(distance >= 15) reward = 3;
+    else if(distance >= 8) reward = 2;
+
+    const best = Number(localStorage.getItem(WALLET_BEST_KEY) || 0);
+    let isRecord = false;
+    let extra = "";
+    if(distance > best){
+        localStorage.setItem(WALLET_BEST_KEY, String(distance));
+        isRecord = true;
+        extra = " 신기록!";
+    }
+
+    let phrase = "손에서 그냥 떨어짐";
+    if(perfectWallet) phrase = "도리의 지갑 각성";
+    else if(distance >= 90) phrase = "지갑이 독립함";
+    else if(distance >= 55) phrase = "전설의 손목 스냅";
+    else if(distance >= 30) phrase = "도리의 어깨";
+    else if(distance >= 12) phrase = "오 제법인데?";
+
+    let itemText = "";
+    if(perfectWallet) itemText = " " + awardItem("dori_wallet");
+
+    document.getElementById("walletResult").innerText = `${distance.toFixed(1)}m`;
+    document.getElementById("walletMsg").innerText = addCoins(reward, `${phrase}!${extra}${itemText}`);
+    document.getElementById("walletStep").innerText = "완료";
+    document.getElementById("walletActionBtn").disabled = false;
+    document.getElementById("walletActionBtn").innerText = "다시 던지기";
+    walletMode = "done";
+    resetWalletBestDisplay();
+
+    if(isRecord){
+        showRecordOverlay(`${distance.toFixed(1)}m 달성!`);
+    }
+}
+
+// 택시/자물쇠 아이템 획득도 연출이 먹도록 성공 함수 재덮어쓰기
+function choosePlate(i, btn){
+    if(!taxiActive) return;
+    if(i === taxiAnswerIndex){
+        taxiScore += 1;
+        document.getElementById("taxiScore").innerText = taxiScore;
+        if(taxiRound >= 7){
+            taxiActive = false;
+            stopTaxiTimer();
+            const reward = 7;
+            const itemText = awardItem("dori_mom_card");
+            document.getElementById("taxiMsg").innerText = addCoins(reward, `택시 잡기 7라운드 클리어! ${itemText}`);
+            document.getElementById("taxiBoard").innerHTML = "";
+            return;
+        }
+        taxiRound += 1;
+        stopTaxiTimer();
+        document.getElementById("taxiMsg").innerText = "정답! 다음 라운드 간다.";
+        setTimeout(nextTaxiRound, 520);
+    }else{
+        btn.classList.add("wrongFlash");
+        taxiTimeLeft = Math.max(0, taxiTimeLeft - 1.0);
+        document.getElementById("taxiMsg").innerText = "아니 이 차 아니잖아! 시간 -1초";
+        setTimeout(()=>btn.classList.remove("wrongFlash"), 260);
+    }
+}
+
+function tryLockGlasses(){
+    if(!lockActive){
+        startLockGame();
+        return;
+    }
+    stopLockAnim();
+    lockActive = false;
+    const abs = Math.abs(lockX);
+    let judge = "실패";
+    let add = 0;
+    const perfectZone = Math.max(6, 16 - lockRound);
+    const goodZone = Math.max(18, 36 - lockRound*2);
+    if(abs <= perfectZone){ judge = "PERFECT"; add = 2; }
+    else if(abs <= goodZone){ judge = "GOOD"; add = 1; }
+
+    const btn = document.getElementById("lockButton");
+
+    if(add <= 0){
+        failLockGame("안경이 가운데가 아니었어. 즉시 실패!");
+        return;
+    }
+
+    lockScore += add;
+    document.getElementById("lockMark").innerText = "🔒";
+    btn.classList.add("lockedGood");
+    btn.innerText = "잠금 성공!";
+    document.getElementById("lockResult").innerText = judge;
+    document.getElementById("lockJudge").innerText = judge;
+    document.getElementById("lockMsg").innerText = abs <= perfectZone ? "완벽한 타이밍!" : "좋아, 잠겼다!";
+    document.getElementById("lockScore").innerText = lockScore;
+
+    if(lockRound >= 7){
+        const reward = Math.min(10, Math.max(2, lockScore));
+        const itemText = awardItem("dori_glasses");
+        document.getElementById("lockMsg").innerText = addCoins(reward, `7라운드 올클리어! 최종 ${lockScore}점. ${itemText}`);
+        btn.innerText = "다시 하기";
+        btn.classList.remove("lockedBad");
+        btn.classList.add("lockedGood");
+        btn.onclick = startLockGame;
+        return;
+    }
+
+    lockRound += 1;
+    setTimeout(()=>{
+        btn.onclick = tryLockGlasses;
+        startLockRound();
+    },700);
+}
+
+
+/* ===== 난이도 조정 패치: 택시 8개 시작 / 안경 6~7라운드 강화 ===== */
+function nextTaxiRound(){
+    // 1라운드는 8개로 시작, 뒤로 갈수록 촘촘하게 증가
+    const sizes = [8,12,18,26,34,42,54];
+    const times = [9.0,8.5,7.8,7.0,6.3,5.7,5.0];
+    const count = sizes[taxiRound-1];
+    const base = makePlate();
+    const odd = mutatePlateHard(base, taxiRound);
+    taxiAnswerIndex = Math.floor(Math.random()*count);
+
+    const board = document.getElementById("taxiBoard");
+    board.classList.add("hard");
+    board.innerHTML = "";
+
+    // 1라운드는 너무 빽빽하지 않게, 4라운드부터 6열
+    if(taxiRound <= 2) board.style.gridTemplateColumns = "repeat(4,minmax(0,1fr))";
+    else if(taxiRound <= 4) board.style.gridTemplateColumns = "repeat(5,minmax(0,1fr))";
+    else board.style.gridTemplateColumns = "repeat(6,minmax(0,1fr))";
+
+    for(let i=0;i<count;i++){
+        const btn = document.createElement("button");
+        btn.className = "plateBtn";
+        btn.innerText = (i === taxiAnswerIndex) ? odd : base;
+        btn.onclick = ()=>choosePlate(i, btn);
+        board.appendChild(btn);
+    }
+
+    taxiTimeLeft = times[taxiRound-1];
+    document.getElementById("taxiRound").innerText = taxiRound;
+    document.getElementById("taxiScore").innerText = taxiScore;
+    if(typeof updateTaxiTimeDisplay === "function") updateTaxiTimeDisplay();
+    else document.getElementById("taxiTime").innerText = taxiTimeLeft.toFixed(1);
+
+    document.getElementById("taxiMsg").innerText = `딱 하나 다른 번호판을 찾아라! (${taxiRound}/7)`;
+    taxiTimer = setInterval(()=>{
+        taxiTimeLeft -= 0.1;
+        if(typeof updateTaxiTimeDisplay === "function") updateTaxiTimeDisplay();
+        else document.getElementById("taxiTime").innerText = Math.max(0,taxiTimeLeft).toFixed(1);
+        if(taxiTimeLeft <= 0){
+            failTaxi("시간 초과! 택시 놓침.");
+        }
+    },100);
+}
+
+function startLockRound(){
+    stopLockAnim();
+    lockActive = true;
+
+    // 6,7라운드는 속도를 확 올리고, 폭도 넓게 움직임
+    const speedTable = [3.0,4.0,5.1,6.2,7.3,9.2,11.0];
+    lockSpeed = speedTable[lockRound-1] || 11.0;
+
+    lockX = Math.random() > .5 ? -245 : 245;
+    lockDir = lockX < 0 ? 1 : -1;
+
+    document.getElementById("lockRound").innerText = lockRound;
+    document.getElementById("lockScore").innerText = lockScore;
+    document.getElementById("lockJudge").innerText = "진행중";
+    document.getElementById("lockMark").innerText = "🔓";
+    document.getElementById("lockResult").innerText = "";
+
+    const btn = document.getElementById("lockButton");
+    btn.classList.remove("lockedGood","lockedBad");
+    btn.innerText = "🔒 자물쇠 누르기";
+    btn.disabled = false;
+    btn.onclick = tryLockGlasses;
+
+    document.getElementById("lockMsg").innerText =
+        lockRound >= 6 ? "극악 난이도! 중앙에 거의 정확히 왔을 때 눌러야 해." :
+        "움직이는 안경이 중앙 초록 구역에 들어오면 눌러!";
+
+    lockAnim = setInterval(()=>{
+        lockX += lockDir * lockSpeed;
+        if(lockX > 255){ lockX = 255; lockDir = -1; }
+        if(lockX < -255){ lockX = -255; lockDir = 1; }
+        const g = document.getElementById("glassesSprite");
+        if(g) g.style.left = `calc(50% + ${lockX}px)`;
+    },16);
+}
+
+function tryLockGlasses(){
+    if(!lockActive){
+        startLockGame();
+        return;
+    }
+
+    stopLockAnim();
+    lockActive = false;
+
+    const abs = Math.abs(lockX);
+    let judge = "실패";
+    let add = 0;
+
+    // 6,7라운드: GOOD 판정 폭을 확 줄임
+    let perfectZone;
+    let goodZone;
+    if(lockRound <= 5){
+        perfectZone = Math.max(6, 16 - lockRound);
+        goodZone = Math.max(18, 36 - lockRound*2);
+    }else if(lockRound === 6){
+        perfectZone = 5;
+        goodZone = 12;
+    }else{
+        perfectZone = 3;
+        goodZone = 8;
+    }
+
+    if(abs <= perfectZone){ judge = "PERFECT"; add = 2; }
+    else if(abs <= goodZone){ judge = "GOOD"; add = 1; }
+
+    const btn = document.getElementById("lockButton");
+
+    if(add <= 0){
+        failLockGame("안경이 가운데가 아니었어. 즉시 실패!");
+        return;
+    }
+
+    lockScore += add;
+    document.getElementById("lockMark").innerText = "🔒";
+    btn.classList.add("lockedGood");
+    btn.innerText = "잠금 성공!";
+    document.getElementById("lockResult").innerText = judge;
+    document.getElementById("lockJudge").innerText = judge;
+    document.getElementById("lockMsg").innerText =
+        lockRound >= 6 ? `${judge}! 어려운 라운드 통과!` :
+        abs <= perfectZone ? "완벽한 타이밍!" : "좋아, 잠겼다!";
+    document.getElementById("lockScore").innerText = lockScore;
+
+    if(lockRound >= 7){
+        const reward = Math.min(10, Math.max(2, lockScore));
+        const itemText = awardItem("dori_glasses");
+        document.getElementById("lockMsg").innerText = addCoins(reward, `7라운드 올클리어! 최종 ${lockScore}점. ${itemText}`);
+        btn.innerText = "다시 하기";
+        btn.classList.remove("lockedBad");
+        btn.classList.add("lockedGood");
+        btn.onclick = startLockGame;
+        return;
+    }
+
+    lockRound += 1;
+    setTimeout(()=>{
+        btn.onclick = tryLockGlasses;
+        startLockRound();
+    },650);
+}
+
+
+/* ===== 아이템 회수 후 획득 연출 최종 고정 ===== */
+function showItemOverlay(item){
+    let overlay = document.getElementById("itemOverlay");
+    if(!overlay){
+        overlay = document.createElement("div");
+        overlay.id = "itemOverlay";
+        overlay.className = "itemOverlay";
+        overlay.innerHTML = `
+            <div class="itemBox">
+                <h2>아이템 획득!</h2>
+                <p id="itemOverlayName">도리의 아이템</p>
+                <img class="itemOverlayImg" id="itemOverlayImg" src="" alt="아이템">
+            </div>`;
+        document.body.appendChild(overlay);
+    }
+
+    const h2 = overlay.querySelector("h2");
+    const name = document.getElementById("itemOverlayName");
+    const img = document.getElementById("itemOverlayImg");
+
+    if(h2) h2.innerText = "아이템 획득!";
+    if(name) name.innerText = item.name;
+    if(img) img.src = item.img;
+
+    overlay.querySelectorAll(".itemSpark").forEach(el => el.remove());
+
+    for(let i=0;i<58;i++){
+        const s = document.createElement("div");
+        s.className = "itemSpark";
+        const angle = Math.random() * Math.PI * 2;
+        const dist = 170 + Math.random() * 360;
+        s.style.left = "50%";
+        s.style.top = "50%";
+        s.style.setProperty("--dx", Math.cos(angle) * dist + "px");
+        s.style.setProperty("--dy", Math.sin(angle) * dist + "px");
+        s.style.animationDelay = (Math.random() * .34) + "s";
+        overlay.appendChild(s);
+    }
+
+    overlay.classList.remove("show");
+    void overlay.offsetWidth;
+    overlay.classList.add("show");
+
+    setTimeout(()=>overlay.classList.remove("show"), 3100);
+}
+
+function awardItem(id){
+    const item = doriItems.find(x=>x.id===id);
+    if(!item) return "";
+    const arr = getItemAlbum();
+
+    if(arr.includes(id)){
+        return `${item.name} 이미 보유 중!`;
+    }
+
+    arr.push(id);
+    saveItemAlbum(arr);
+    renderAlbum();
+    showItemOverlay(item);
+    return `🎁 아이템 획득! ${item.name}`;
+}
+
+
+/* ===== 안경 자물쇠 초고난도 패치 ===== */
+function startLockRound(){
+    stopLockAnim();
+    lockActive = true;
+
+    // 전체적으로 더 빠르게, 6~7단계는 거의 극악
+    const speedTable = [4.2,5.4,6.8,8.2,9.8,12.8,15.5];
+    lockSpeed = speedTable[lockRound-1] || 15.5;
+
+    lockX = Math.random() > .5 ? -270 : 270;
+    lockDir = lockX < 0 ? 1 : -1;
+
+    document.getElementById("lockRound").innerText = lockRound;
+    document.getElementById("lockScore").innerText = lockScore;
+    document.getElementById("lockJudge").innerText = "진행중";
+    document.getElementById("lockMark").innerText = "🔓";
+    document.getElementById("lockResult").innerText = "";
+
+    const btn = document.getElementById("lockButton");
+    btn.classList.remove("lockedGood","lockedBad");
+    btn.innerText = "🔒 자물쇠 누르기";
+    btn.disabled = false;
+    btn.onclick = tryLockGlasses;
+
+    document.getElementById("lockMsg").innerText =
+        lockRound >= 6 ? "초고난도! 중앙선에 거의 겹쳐야 성공." :
+        "중앙 초록 구역이 아니라 중앙선 근처에서 눌러야 해.";
+
+    lockAnim = setInterval(()=>{
+        lockX += lockDir * lockSpeed;
+        if(lockX > 280){ lockX = 280; lockDir = -1; }
+        if(lockX < -280){ lockX = -280; lockDir = 1; }
+        const g = document.getElementById("glassesSprite");
+        if(g) g.style.left = `calc(50% + ${lockX}px)`;
+    },16);
+}
+
+function tryLockGlasses(){
+    if(!lockActive){
+        startLockGame();
+        return;
+    }
+
+    stopLockAnim();
+    lockActive = false;
+
+    const abs = Math.abs(lockX);
+    let judge = "실패";
+    let add = 0;
+
+    // 판정폭 전체 하향. 6,7단계는 진짜 좁게.
+    let perfectZone;
+    let goodZone;
+    if(lockRound === 1){ perfectZone = 9; goodZone = 20; }
+    else if(lockRound === 2){ perfectZone = 8; goodZone = 17; }
+    else if(lockRound === 3){ perfectZone = 7; goodZone = 14; }
+    else if(lockRound === 4){ perfectZone = 6; goodZone = 11; }
+    else if(lockRound === 5){ perfectZone = 5; goodZone = 9; }
+    else if(lockRound === 6){ perfectZone = 3; goodZone = 6; }
+    else { perfectZone = 2; goodZone = 4; }
+
+    if(abs <= perfectZone){ judge = "PERFECT"; add = 2; }
+    else if(abs <= goodZone){ judge = "GOOD"; add = 1; }
+
+    const btn = document.getElementById("lockButton");
+
+    if(add <= 0){
+        failLockGame("중앙선에서 벗어났어. 즉시 실패!");
+        return;
+    }
+
+    lockScore += add;
+    document.getElementById("lockMark").innerText = "🔒";
+    btn.classList.add("lockedGood");
+    btn.innerText = "잠금 성공!";
+    document.getElementById("lockResult").innerText = judge;
+    document.getElementById("lockJudge").innerText = judge;
+    document.getElementById("lockMsg").innerText =
+        lockRound >= 6 ? `${judge}! 미친 난이도 통과!` :
+        abs <= perfectZone ? "완벽한 타이밍!" : "간신히 잠겼다!";
+    document.getElementById("lockScore").innerText = lockScore;
+
+    if(lockRound >= 7){
+        const reward = Math.min(10, Math.max(2, lockScore));
+        const itemText = awardItem("dori_glasses");
+        document.getElementById("lockMsg").innerText = addCoins(reward, `7라운드 올클리어! 최종 ${lockScore}점. ${itemText}`);
+        btn.innerText = "다시 하기";
+        btn.classList.remove("lockedBad");
+        btn.classList.add("lockedGood");
+        btn.onclick = startLockGame;
+        return;
+    }
+
+    lockRound += 1;
+    setTimeout(()=>{
+        btn.onclick = tryLockGlasses;
+        startLockRound();
+    },600);
+}
+
+
+/* ===== 아이템 회수 사과 보상 안내 ===== */
+const RECLAIM_NOTICE_KEY = "dori_reclaim_notice_reward_v4";
+
+function showReclaimNoticeIfNeeded(){
+    if(localStorage.getItem(RECLAIM_NOTICE_KEY) === "claimed") return;
+    const overlay = document.getElementById("reclaimNoticeOverlay");
+    if(overlay) overlay.classList.add("show");
+}
+
+function claimReclaimReward(){
+    if(localStorage.getItem(RECLAIM_NOTICE_KEY) === "claimed"){
+        const overlay = document.getElementById("reclaimNoticeOverlay");
+        if(overlay) overlay.classList.remove("show");
+        return;
+    }
+
+    const state = getState();
+    state.coins += 100;
+    saveState(state);
+    localStorage.setItem(RECLAIM_NOTICE_KEY, "claimed");
+
+    updateStateUI();
+
+    const overlay = document.getElementById("reclaimNoticeOverlay");
+    if(overlay) overlay.classList.remove("show");
+}
+
+
+/* ===== 안내사항 팝업 최종 강제 패치 ===== */
+const RECLAIM_NOTICE_KEY_FINAL = "dori_reclaim_notice_reward_v4";
+
+function showReclaimNoticeIfNeeded(){
+    const overlay = document.getElementById("reclaimNoticeOverlay");
+    if(!overlay) return;
+
+    if(localStorage.getItem(RECLAIM_NOTICE_KEY_FINAL) === "claimed"){
+        overlay.classList.remove("show");
+        return;
+    }
+
+    overlay.style.display = "flex";
+    overlay.classList.add("show");
+}
+
+function claimReclaimReward(){
+    const overlay = document.getElementById("reclaimNoticeOverlay");
+
+    if(localStorage.getItem(RECLAIM_NOTICE_KEY_FINAL) !== "claimed"){
+        const state = getState();
+        state.coins += 100;
+        saveState(state);
+        localStorage.setItem(RECLAIM_NOTICE_KEY_FINAL, "claimed");
+        updateStateUI();
+    }
+
+    if(overlay){
+        overlay.classList.remove("show");
+        overlay.style.display = "none";
+    }
+}
+
+// 페이지 로드 후에도 한 번 더 체크해서 확실히 띄움
+setTimeout(showReclaimNoticeIfNeeded, 250);
+document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(showReclaimNoticeIfNeeded, 250);
+});
+
+
+/* ===== 10연 뽑기 ===== */
+function closeTenResult(){
+    const overlay = document.getElementById("tenResultOverlay");
+    if(overlay) overlay.classList.remove("show");
+}
+
+async function tenPull(){
+    if(rolling) return;
+
+    const state = getState();
+    if(state.coins < 10){
+        showMessage("코인이 부족해! 10연 뽑기는 코인 10개가 필요해.", "");
+        return;
+    }
+
+    rolling = true;
+    updateStateUI();
+    showMessage("10연 뽑는 중...", "");
+
+    await new Promise(r=>setTimeout(r, 420));
+
+    const album = getAlbum();
+    const results = [];
+    let newCount = 0;
+    let gainedPieces = 0;
+    let legendaryAppeared = false;
+
+    for(let i=0;i<10;i++){
+        const item = pickItem(state);
+        results.push(item);
+
+        if(!album.includes(item.id)){
+            album.push(item.id);
+            newCount += 1;
+        }else{
+            const gained = pieceReward(item.rarity);
+            state.pieces += gained;
+            gainedPieces += gained;
+        }
+
+        state.total += 1;
+        if(item.rarity === "전설"){
+            legendaryAppeared = true;
+            state.pity = 0;
+        }else{
+            state.pity += 1;
+        }
+    }
+
+    state.coins -= 10;
+
+    saveAlbum(album);
+    saveState(state);
+
+    const lastItem = results[results.length-1];
+    setResult(lastItem);
+    addRecent(results);
+    renderAlbum();
+    updateStateUI();
+
+    const grid = document.getElementById("tenResultGrid");
+    const overlay = document.getElementById("tenResultOverlay");
+    if(grid){
+        grid.innerHTML = results.map(item => `
+            <div class="albumCard ${item.rarity === "전설" ? "legendary" : item.rarity === "특별" ? "special" : "common"}">
+                ${renderGameCard(item, {size:'album'})}
+            </div>
+        `).join("");
+    }
+    if(overlay) overlay.classList.add("show");
+
+    if(legendaryAppeared){
+        showMessage(`10연 결과: 전설 등장! 신규 ${newCount}개 · 조각 +${gainedPieces}`, "legend");
+        await showLegendaryEffect();
+    }else if(newCount > 0){
+        showMessage(`10연 결과: 신규 도리 ${newCount}개 획득! 조각 +${gainedPieces}`, "special");
+    }else{
+        showMessage(`10연 결과: 전부 중복! 조각 +${gainedPieces}`, "");
+    }
+
+    rolling = false;
+    updateStateUI();
+}
+
+
+/* ===== 안내사항 팝업 최종 패치 ===== */
+function showReclaimNoticeIfNeeded(){
+    const overlay = document.getElementById("reclaimNoticeOverlay");
+    if(!overlay) return;
+    if(localStorage.getItem(RECLAIM_NOTICE_KEY) === "claimed"){
+        overlay.classList.remove("show");
+        overlay.style.display = "none";
+        return;
+    }
+    overlay.style.display = "flex";
+    overlay.classList.add("show");
+}
+
+function claimReclaimReward(){
+    const overlay = document.getElementById("reclaimNoticeOverlay");
+
+    if(localStorage.getItem(RECLAIM_NOTICE_KEY) !== "claimed"){
+        const state = getState();
+        state.coins += 100;
+        saveState(state);
+        localStorage.setItem(RECLAIM_NOTICE_KEY, "claimed");
+        updateStateUI();
+    }
+
+    if(overlay){
+        overlay.classList.remove("show");
+        overlay.style.display = "none";
+    }
+}
+
+setTimeout(showReclaimNoticeIfNeeded, 150);
+setTimeout(showReclaimNoticeIfNeeded, 600);
+document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(showReclaimNoticeIfNeeded, 150);
+});
+
 setResult(items[0]);
 renderAlbum();
 updateStateUI();
 updateGameRewardUI();
 showHome();
+showReclaimNoticeIfNeeded();
 setInterval(updateStateUI, 30000);
 </script>
 </body>
