@@ -846,8 +846,8 @@ button:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:0 8px 0
         <div class="panel tabPanel" id="gamePanel">
             <button class="backHomeBtn" onclick="showHome()">← 메인</button>
             <h2 style="margin:0 0 8px;font-size:32px">🎮 게임</h2>
-            <p style="margin:0;color:#d7defb;font-weight:700">게임은 무제한으로 가능하지만, 코인 보상은 하루 15번까지만 받을 수 있어.</p>
-            <div class="infoPill" style="margin-top:12px;display:inline-block">오늘 남은 코인 보상 <span id="gameRewardText">15</span> / 15</div>
+            <p style="margin:0;color:#d7defb;font-weight:700">게임은 무제한으로 가능하지만, 코인 보상은 하루 30번까지만 받을 수 있어.</p>
+            <div class="infoPill" style="margin-top:12px;display:inline-block">오늘 남은 코인 보상 <span id="gameRewardText">30</span> / 30</div>
 
             <div class="gameHub" id="gameHub">
                 <button class="gameCardBtn taxi" onclick="openMiniGame('taxi')">
@@ -2275,7 +2275,7 @@ function awardItem(id){
 
 /* ===== 게임은 무제한, 코인 보상만 하루 15번 제한 ===== */
 const GAME_REWARD_KEY = "dori_game_coin_rewards_v1";
-const DAILY_GAME_REWARDS = 15;
+const DAILY_GAME_REWARDS = 30;
 
 function getGameRewardState(){
     let s;
@@ -2304,8 +2304,8 @@ addCoins = function(amount, text){
     if((rewardState.used || 0) >= DAILY_GAME_REWARDS){
         updateGameRewardUI();
         updateStateUI();
-        if(text) return text + " 오늘 코인 보상 15번을 다 받아서 코인은 지급되지 않음.";
-        return "오늘 코인 보상 15번을 다 받아서 코인은 지급되지 않음.";
+        if(text) return text + " 오늘 코인 보상 30번을 다 받아서 코인은 지급되지 않음.";
+        return "오늘 코인 보상 30번을 다 받아서 코인은 지급되지 않음.";
     }
 
     rewardState.used = (rewardState.used || 0) + 1;
